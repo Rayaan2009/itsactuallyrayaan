@@ -1,4 +1,3 @@
-import { tailwindConfig } from "tailwindcss/resolveConfig";
 import type { Config } from "tailwindcss";
 
 export default {

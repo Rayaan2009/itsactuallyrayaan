@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rayaan Bin Saifullah - Portfolio</title>
+    <meta name="description" content="Portfolio of Rayaan Bin Saifullah, student developer, IoT enthusiast, and competition winner." />
+    <meta name="author" content="Rayaan Bin Saifullah" />
+
+    <meta property="og:title" content="Rayaan Bin Saifullah - Portfolio" />
+    <meta property="og:description" content="Portfolio of Rayaan Bin Saifullah, student developer, IoT enthusiast, and competition winner." />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script>
+      const isDirectFileOpen = window.location.protocol === "file:";
+      const isBuiltIndex = /\/dist\/index\.html$/i.test(window.location.pathname);
+
+      if (isDirectFileOpen && !isBuiltIndex) {
+        window.location.replace(new URL("./dist/index.html", window.location.href).href);
+      }
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

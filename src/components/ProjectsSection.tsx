@@ -4,44 +4,35 @@ import { cn } from '@/lib/utils';
 
 const projects = [
   {
-    title: 'Project Alpha',
+    title: 'Smart Home Automation System',
     description:
-      'A full-stack SaaS platform with real-time collaboration, AI-powered features, and a seamless onboarding experience.',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'WebSockets'],
+      'Voice-controlled home automation system integrated with Google Assistant and Alexa, enabling hands-free control of home devices. Awarded 2nd place in school competition.',
+    tags: ['IoT', 'Google Assistant', 'Alexa', 'Automation', 'Arduino'],
     color: 'from-violet-500/20 to-purple-500/10',
     accent: 'hsl(265 89% 70%)',
     link: '#',
     year: '2024',
   },
   {
-    title: 'Design System',
+    title: 'Intelligent Security System',
     description:
-      'A comprehensive design system and component library used across multiple products, with full Figma and code integration.',
-    tags: ['TypeScript', 'Tailwind', 'Storybook', 'Figma'],
-    color: 'from-blue-500/20 to-cyan-500/10',
-    accent: 'hsl(210 100% 65%)',
+      'Advanced security system featuring RFID and PIN-based access control combined with robotics for automated responses. Won 1st place in school competition.',
+    tags: ['RFID', 'Robotics', 'Arduino', 'Security', 'IoT'],
+    color: 'from-emerald-500/20 to-teal-500/10',
+    accent: 'hsl(160 70% 55%)',
     link: '#',
     year: '2024',
   },
   {
-    title: 'E-commerce Platform',
+    title: 'Python Projects',
     description:
-      'High-performance e-commerce solution handling 10k+ concurrent users with custom checkout flow and analytics dashboard.',
-    tags: ['Next.js', 'Stripe', 'Supabase', 'Redis'],
-    color: 'from-emerald-500/20 to-teal-500/10',
-    accent: 'hsl(160 70% 55%)',
-    link: '#',
-    year: '2023',
-  },
-  {
-    title: 'Mobile App',
-    description:
-      'Cross-platform mobile app with native animations, offline support, and deep OS integrations for iOS and Android.',
-    tags: ['React Native', 'Expo', 'SQLite', 'Push Notifications'],
-    color: 'from-pink-500/20 to-rose-500/10',
-    accent: 'hsl(340 80% 65%)',
-    link: '#',
-    year: '2023',
+      'A growing collection of Python projects covering algorithms, data structures, and problem solving. Ranked 16,516 globally on HackerRank (score: 2302.13/2305) with 5 verified certificates.',
+    tags: ['Python', 'Algorithms', 'Problem Solving', 'HackerRank'],
+    color: 'from-blue-500/20 to-cyan-500/10',
+    accent: 'hsl(210 100% 65%)',
+    link: 'https://github.com/Rayaan2009',
+    year: '2024',
+    external: true,
   },
 ];
 
@@ -133,10 +124,12 @@ function ProjectCard({
         {/* Link */}
         <a
           href={project.link}
+          target={project.external ? '_blank' : undefined}
+          rel={project.external ? 'noopener noreferrer' : undefined}
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
           style={{ transition: `gap var(--dur-std) var(--ease-spring)` }}
         >
-          View Project
+          {project.external ? 'View on GitHub' : 'View Project'}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>

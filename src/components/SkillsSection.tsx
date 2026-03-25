@@ -2,10 +2,10 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { cn } from '@/lib/utils';
 
 const skills = [
-  { category: 'Frontend', items: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'Three.js'] },
-  { category: 'Backend', items: ['Node.js', 'Python', 'PostgreSQL', 'Supabase', 'REST APIs', 'GraphQL'] },
-  { category: 'Design', items: ['Figma', 'UI/UX', 'Motion Design', 'Prototyping', 'Design Systems'] },
-  { category: 'Tools', items: ['Git', 'Docker', 'CI/CD', 'AWS', 'Vercel', 'Linux'] },
+  { category: 'Programming', items: ['Python', 'JavaScript', 'HTML', 'CSS', 'C++'] },
+  { category: 'IoT & Automation', items: ['Arduino', 'RFID', 'Home Automation', 'Google Assistant', 'Alexa', 'Robotics'] },
+  { category: 'Subjects', items: ['Mathematics', 'Physics', 'Chemistry', 'Computer Science', 'ICT'] },
+  { category: 'Platforms & Tools', items: ['Git', 'GitHub', 'HackerRank', 'Linux', 'VS Code'] },
 ];
 
 function SkillBadge({ label, delay }: { label: string; delay: number }) {

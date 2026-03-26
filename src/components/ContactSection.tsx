@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { useMagneticHover } from '@/hooks/useMagneticHover';
 import { cn } from '@/lib/utils';
+import { PROFILE_SOCIAL_LINKS } from '@/lib/profile';
 
 export function ContactSection() {
   const ref = useScrollReveal<HTMLElement>(0.1);
@@ -132,10 +133,10 @@ export function ContactSection() {
         {/* Social links */}
         <div className="reveal reveal-delay-4 flex items-center justify-center gap-4 mt-10">
           {[
-            { label: 'GitHub', href: '#' },
-            { label: 'LinkedIn', href: '#' },
-            { label: 'Twitter', href: '#' },
-            { label: 'Email', href: 'mailto:hello@rayaan.dev' },
+            { label: 'GitHub', href: PROFILE_SOCIAL_LINKS.github },
+            { label: 'LinkedIn', href: PROFILE_SOCIAL_LINKS.linkedin },
+            { label: 'YouTube', href: PROFILE_SOCIAL_LINKS.youtube },
+            { label: 'Email', href: PROFILE_SOCIAL_LINKS.email },
           ].map((link) => (
             <a
               key={link.label}

@@ -7,6 +7,7 @@ import { AboutSection } from '@/components/AboutSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { SkillsSection } from '@/components/SkillsSection';
 import { AchievementsSection } from '@/components/AchievementsSection';
+import { ContactSection } from '@/components/ContactSection';
 
 function Footer() {
   return (
@@ -49,6 +50,7 @@ export default function Index() {
         <ProjectsSection />
         <SkillsSection />
         <AchievementsSection />
+        <ContactSection />
         <Footer />
       </main>
     </div>

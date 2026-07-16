@@ -1,4 +1,5 @@
 import { useRef, useCallback, RefObject } from 'react';
+import { prefersReducedMotion, isCoarsePointer } from './useReducedMotion';
 
 interface MagneticOptions {
   strength?: number; // 0-1, default 0.4
@@ -17,7 +18,7 @@ export function useMagneticHover<T extends HTMLElement>(
   const onMouseMove = useCallback(
     (e: React.MouseEvent<T>) => {
       const el = ref.current;
-      if (!el) return;
+      if (!el || prefersReducedMotion() || isCoarsePointer()) return;
       const rect = el.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;

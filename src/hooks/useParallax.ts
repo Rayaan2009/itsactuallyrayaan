@@ -1,27 +1,38 @@
 import { useEffect, useRef, RefObject } from 'react';
+import { prefersReducedMotion, isCoarsePointer } from './useReducedMotion';
 
-export function useParallax<T extends HTMLElement>(
-  speed = 0.3
-): RefObject<T> {
+/**
+ * Scroll-driven parallax translation. Only recomputes on scroll (throttled with
+ * rAF) rather than every frame, and disables itself for reduced-motion / touch.
+ */
+export function useParallax<T extends HTMLElement>(speed = 0.3): RefObject<T> {
   const ref = useRef<T>(null);
 
   useEffect(() => {
-    let rafId: number;
-    let lastY = window.scrollY;
+    if (prefersReducedMotion() || isCoarsePointer()) return;
 
-    const update = () => {
+    let rafId = 0;
+    let ticking = false;
+
+    const apply = () => {
       const el = ref.current;
-      if (!el) return;
-      const y = window.scrollY;
-      if (y !== lastY) {
-        el.style.transform = `translateY(${y * speed}px) translateZ(0)`;
-        lastY = y;
-      }
-      rafId = requestAnimationFrame(update);
+      if (el) el.style.transform = `translateY(${window.scrollY * speed}px) translateZ(0)`;
+      ticking = false;
     };
 
-    rafId = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(rafId);
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        rafId = requestAnimationFrame(apply);
+      }
+    };
+
+    apply();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, [speed]);
 
   return ref;

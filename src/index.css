@@ -90,6 +90,17 @@
     background: hsl(var(--primary) / 0.3);
     color: hsl(var(--foreground));
   }
+
+  /* Visible keyboard focus for interactive elements */
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
 }
 
 @layer components {
@@ -244,3 +255,24 @@
 .animate-blob { animation: blob-morph 8s var(--ease-apple) infinite; }
 .animate-page-enter { animation: page-enter 0.5s var(--ease-out) forwards; }
 .animate-nav-reveal { animation: nav-reveal 0.6s var(--ease-out) forwards; }
+
+/* Respect users who prefer reduced motion: keep content visible, cut movement. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

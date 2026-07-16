@@ -1,117 +1,92 @@
-import { useRef, useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useTilt } from '@/hooks/useTilt';
 import { cn } from '@/lib/utils';
+import { PROJECTS, type Project } from '@/lib/data';
 
-const projects = [
-  {
-    title: 'Smart Home Automation System',
-    description:
-      'Voice-controlled home automation system integrated with Google Assistant and Alexa, enabling hands-free control of home devices. Awarded 2nd place in school competition.',
-    tags: ['IoT', 'Google Assistant', 'Alexa', 'Automation', 'Arduino'],
-    color: 'from-violet-500/20 to-purple-500/10',
-    accent: 'hsl(265 89% 70%)',
-    link: '#',
-    year: '2022',
-  },
-  {
-    title: 'Intelligent Security System',
-    description:
-      'Advanced security system featuring RFID and PIN-based access control combined with robotics for automated responses. Won 1st place in school competition.',
-    tags: ['RFID', 'Robotics', 'Arduino', 'Security', 'IoT'],
-    color: 'from-emerald-500/20 to-teal-500/10',
-    accent: 'hsl(160 70% 55%)',
-    link: '#',
-    year: '2024',
-  },
-  {
-    title: 'Python Projects',
-    description:
-      'A growing collection of Python projects covering algorithms, data structures, and problem solving. Ranked 16,516 globally on HackerRank (score: 2302.13/2305) with 5 verified certificates.',
-    tags: ['Python', 'Algorithms', 'Problem Solving', 'HackerRank'],
-    color: 'from-blue-500/20 to-cyan-500/10',
-    accent: 'hsl(210 100% 65%)',
-    link: 'https://github.com/Rayaan2009',
-    year: '2024',
-    external: true,
-  },
-];
+function CaseStudy({ problem, idea, result }: Pick<Project, 'problem' | 'idea' | 'result'>) {
+  const rows = [
+    { label: 'Problem', value: problem },
+    { label: 'Idea', value: idea },
+    { label: 'Result', value: result },
+  ];
+  return (
+    <dl className="space-y-3 mb-5">
+      {rows.map((row) => (
+        <div key={row.label} className="grid grid-cols-[76px_1fr] gap-3">
+          <dt className="text-[11px] font-bold tracking-widest uppercase text-primary/80 pt-0.5">
+            {row.label}
+          </dt>
+          <dd className="text-sm text-foreground/65 leading-relaxed">{row.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-}) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
-    const y = -((e.clientX - rect.left) / rect.width - 0.5) * 10;
-    setTilt({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-    setHovered(false);
-  };
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { ref, style, onMouseMove, onMouseEnter, onMouseLeave } = useTilt<HTMLElement>();
+  const Icon = project.icon;
 
   return (
-    <div
-      ref={cardRef}
+    <article
+      ref={ref}
       className={cn(
-        'reveal glass glass-noise relative rounded-2xl overflow-hidden cursor-pointer group',
+        'reveal glass glass-noise relative rounded-2xl overflow-hidden group flex flex-col',
         `reveal-delay-${(index % 4) + 1}`
       )}
-      style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(0)`,
-        transition: hovered
-          ? 'transform 0.1s linear'
-          : 'transform 0.5s var(--ease-spring)',
-        willChange: 'transform',
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={handleMouseLeave}
+      style={style}
+      onMouseMove={onMouseMove}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {/* Gradient header */}
-      <div
-        className={cn('h-36 bg-gradient-to-br relative overflow-hidden', project.color)}
-      >
-        {/* Glowing orb */}
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-        >
+      <div className={cn('h-32 bg-gradient-to-br relative overflow-hidden', project.gradient)}>
+        <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
           <div
             className="w-24 h-24 rounded-full blur-2xl opacity-60 group-hover:opacity-90 transition-opacity"
             style={{ background: project.accent }}
           />
         </div>
-        {/* Year badge */}
-        <span className="absolute top-4 right-4 text-xs font-mono text-white/50 bg-black/20 px-2 py-1 rounded-full">
+        <div
+          className="absolute top-4 left-5 flex h-11 w-11 items-center justify-center rounded-xl glass border-white/15"
+          aria-hidden="true"
+        >
+          <Icon className="h-5 w-5 text-foreground/85" />
+        </div>
+        <span className="absolute top-4 right-4 text-xs font-mono text-white/60 bg-black/25 px-2 py-1 rounded-full">
           {project.year}
         </span>
+        {project.award && (
+          <span className="absolute bottom-4 left-5 text-xs font-semibold text-white/90 bg-black/30 px-2.5 py-1 rounded-full">
+            🏆 {project.award}
+          </span>
+        )}
       </div>
 
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         <h3
-          className="text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+          className="text-lg font-bold mb-1 group-hover:text-primary transition-colors"
           style={{ fontFamily: 'Syne, sans-serif' }}
         >
           {project.title}
         </h3>
-        <p className="text-sm text-foreground/60 leading-relaxed mb-4">
-          {project.description}
-        </p>
+        <p className="text-sm text-foreground/50 mb-4">{project.tagline}</p>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.tags.map((tag) => (
+        <CaseStudy problem={project.problem} idea={project.idea} result={project.result} />
+
+        {/* Implementation */}
+        <ul className="space-y-1.5 mb-5">
+          {project.implementation.map((item) => (
+            <li key={item} className="flex gap-2 text-sm text-foreground/60 leading-snug">
+              <span className="text-primary mt-0.5 shrink-0" aria-hidden="true">›</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Tech stack */}
+        <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+          {project.tech.map((tag) => (
             <span
               key={tag}
               className="text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-foreground/60"
@@ -122,29 +97,32 @@ function ProjectCard({
         </div>
 
         {/* Link */}
-        <a
-          href={project.link}
-          target={project.external ? '_blank' : undefined}
-          rel={project.external ? 'noopener noreferrer' : undefined}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
-          style={{ transition: `gap var(--dur-std) var(--ease-spring)` }}
-        >
-          {project.external ? 'View on GitHub' : 'View Project'}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
+        {project.link && (
+          <a
+            href={project.link}
+            target={project.external ? '_blank' : undefined}
+            rel={project.external ? 'noopener noreferrer' : undefined}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 w-fit"
+            style={{ transition: `gap var(--dur-std) var(--ease-spring)` }}
+          >
+            {project.external ? 'Explore' : 'View project'}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        )}
       </div>
 
       {/* Inner glow on hover */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none"
+        aria-hidden="true"
         style={{
           boxShadow: `inset 0 0 40px ${project.accent}20`,
           transition: `opacity var(--dur-std) var(--ease-apple)`,
         }}
       />
-    </div>
+    </article>
   );
 }
 
@@ -154,7 +132,6 @@ export function ProjectsSection() {
   return (
     <section id="projects" ref={ref} className="section-padding">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="mb-16 text-center">
           <div className="reveal inline-block px-3 py-1 rounded-full glass border-primary/20 text-primary text-xs font-semibold tracking-widest uppercase mb-4">
             Work
@@ -165,14 +142,14 @@ export function ProjectsSection() {
           >
             <span className="text-gradient">Selected Projects</span>
           </h2>
-          <p className="reveal reveal-delay-2 text-foreground/50 mt-4 max-w-md mx-auto">
-            A curated selection of work spanning product, design, and engineering.
+          <p className="reveal reveal-delay-2 text-foreground/50 mt-4 max-w-xl mx-auto">
+            Case studies across IoT, AI, robotics, and competitive programming — each solving a
+            real problem end to end.
           </p>
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
+          {PROJECTS.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>

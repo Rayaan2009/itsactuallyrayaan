@@ -143,8 +143,8 @@ export function ProjectsSection() {
             <span className="text-gradient">Selected Projects</span>
           </h2>
           <p className="reveal reveal-delay-2 text-foreground/50 mt-4 max-w-xl mx-auto">
-            Case studies across IoT, AI, robotics, and competitive programming — each solving a
-            real problem end to end.
+            Case studies across IoT, AI, robotics, and competitive programming. Each one started
+            as a real problem I wanted to solve.
           </p>
         </div>
 

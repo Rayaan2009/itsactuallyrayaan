@@ -17,8 +17,7 @@ function VerifiedBadge() {
 
 function CertCard({ cert, index }: { cert: Certificate; index: number }) {
   const { ref, style, onMouseMove, onMouseEnter, onMouseLeave } = useTilt<HTMLElement>();
-  const href = cert.verifyUrl ?? cert.courseUrl;
-  const linkLabel = cert.verifyUrl ? 'Verify certificate' : 'View programme';
+  const href = cert.verifyUrl;
 
   return (
     <article
@@ -86,7 +85,7 @@ function CertCard({ cert, index }: { cert: Certificate; index: number }) {
             className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 w-fit"
             style={{ transition: `gap var(--dur-std) var(--ease-spring)` }}
           >
-            {linkLabel}
+            Verify certificate
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               <polyline points="15 3 21 3 21 9" />
@@ -125,7 +124,7 @@ export function AchievementsSection() {
             <span className="text-gradient">Certificates &amp; Awards</span>
           </h2>
           <p className="reveal reveal-delay-2 text-foreground/50 mt-4 max-w-md mx-auto">
-            HarvardX AI programmes and verified skill certificates that back up the work.
+            HarvardX AI programmes and verified skill certificates, all with public verification links.
           </p>
         </div>
 

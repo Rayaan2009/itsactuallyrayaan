@@ -39,7 +39,7 @@ export function SkillsSection() {
             <span className="text-gradient">Skills &amp; Toolkit</span>
           </h2>
           <p className="reveal reveal-delay-2 text-foreground/50 mt-4 max-w-md mx-auto">
-            From low-level embedded C to AI in Python — the tools I use to turn ideas into systems.
+            From low-level embedded C to AI in Python, these are the tools I reach for most.
           </p>
         </div>
 

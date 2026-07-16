@@ -7,7 +7,7 @@ const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Achievements', href: '#achievements' },
+  { label: 'Certificates', href: '#certificates' },
 ];
 
 function MagneticNavLink({
@@ -58,7 +58,7 @@ export function Navbar() {
       setScrolled(window.scrollY > 40);
 
       // Determine active section
-      const sections = ['about', 'projects', 'skills', 'achievements'];
+      const sections = ['about', 'projects', 'skills', 'certificates'];
       for (const id of sections.reverse()) {
         const el = document.getElementById(id);
         if (el && window.scrollY >= el.offsetTop - 120) {

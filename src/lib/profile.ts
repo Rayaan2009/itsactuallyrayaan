@@ -1,5 +1,30 @@
 export const PROFILE_IMAGE_URL = 'https://github.com/Rayaan2009.png?size=400';
 
+export const PROFILE = {
+  name: 'Rayaan Bin Saifullah',
+  firstName: 'Rayaan',
+  headline: 'Aspiring Software Engineer · Python & Web Developer · IoT & AI Innovator',
+  /** Short, punchy value statement used in the hero. */
+  valueStatement:
+    'I build systems where software meets hardware — from voice-controlled smart homes to AI-driven security — pairing clean engineering with real-world problem solving.',
+  roles: ['Software Engineer', 'IoT & AI Innovator', 'Competitive Programmer'],
+  location: 'Doha, Qatar',
+  education: {
+    school: 'Doha Academy',
+    year: 'Year 11 · IGCSE',
+    subjects: 'Mathematics, Physics, Chemistry, Computer Science, ICT, Arabic, English',
+    future: 'AS/A Level: Mathematics, Physics, Chemistry (+ Computer Science)',
+  },
+  /** Long-form about copy, one entry per paragraph. */
+  about: [
+    "I'm Rayaan Bin Saifullah, a Year 11 student at Doha Academy and an aspiring software engineer with five years of programming experience. I specialise in Python, C, and IoT development, building systems that combine creativity with real-world problem-solving.",
+    'I have developed multiple hardware–software projects, including smart home automation systems supporting Google Assistant and Alexa, and intelligent security systems featuring RFID/PIN access, environmental sensors, and robotic interception vehicles. These projects achieved 1st and 2nd place positions in school competitions.',
+    'I am also a competitive programmer with strong algorithmic problem-solving skills. I have earned verified certificates in Python, CSS, and Problem Solving, and completed HarvardX programmes including CS50AI: Introduction to Artificial Intelligence with Python and the Professional Certificate in Computer Science for Artificial Intelligence.',
+    'Currently, I am completing my GCSEs while exploring artificial intelligence, IoT, robotics, and advanced software engineering concepts. My long-term goal is to study computer science or artificial intelligence at university and build technologies that make life smarter, safer, and more efficient.',
+    'Outside technology, I enjoy street photography, sketching, and design experimentation.',
+  ],
+} as const;
+
 export const PROFILE_SOCIAL_LINKS = {
   github: 'https://github.com/Rayaan2009',
   linkedin: 'https://www.linkedin.com/in/itsactuallyrayaan/',

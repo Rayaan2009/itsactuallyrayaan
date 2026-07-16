@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
     tagline: 'RFID + PIN access control with an autonomous interception vehicle',
     year: '2024',
     problem:
-      'Conventional home security is reactive — it records an intrusion but rarely responds to it in real time.',
+      'Most home security is reactive. It records a break-in but rarely does anything to stop it while it is happening.',
     idea:
       'A layered system that authenticates people at the door and physically responds to unauthorised entry using a small robotic vehicle.',
     implementation: [
@@ -93,13 +93,13 @@ export const PROJECTS: Project[] = [
     award: '2nd place · School competition',
   },
   {
-    title: 'AI with Python — CS50AI',
+    title: 'AI with Python (CS50AI)',
     tagline: 'Search, knowledge, optimisation & machine-learning projects',
     year: '2024',
     problem:
       'Understanding modern AI means moving past libraries to the algorithms that actually make machines reason and learn.',
     idea:
-      'Implement core AI techniques from first principles across HarvardX CS50AI — from adversarial search to neural networks.',
+      'Build core AI techniques from scratch across HarvardX CS50AI, from adversarial search to neural networks.',
     implementation: [
       'Search & adversarial agents (minimax, alpha-beta pruning)',
       'Knowledge representation, propositional logic, and inference',
@@ -122,7 +122,7 @@ export const PROJECTS: Project[] = [
     problem:
       'Strong engineers are built on fluency with algorithms and disciplined problem decomposition.',
     idea:
-      'Treat competitive programming as deliberate practice — solving graded challenges and earning verified skill certificates.',
+      'Treat competitive programming as deliberate practice: solving graded challenges and earning verified skill certificates.',
     implementation: [
       'Data structures, sorting, searching, and dynamic programming',
       'Verified HackerRank certificates in Python and Problem Solving',
@@ -214,8 +214,6 @@ export type Certificate = {
   skills: string[];
   /** Direct verification URL (real certificate). */
   verifyUrl?: string;
-  /** Public programme/course page when no personal verification link exists. */
-  courseUrl?: string;
   accent: string;
   gradient: string;
   featured?: boolean;
@@ -227,9 +225,9 @@ export const CERTIFICATES: Certificate[] = [
     issuer: 'HarvardX',
     badge: 'Harvard',
     description:
-      "Harvard's graduate-style introduction to modern AI — building intelligent agents from search and logic to machine learning and neural networks.",
+      "Harvard's introduction to modern AI, building intelligent agents from search and logic through to machine learning and neural networks.",
     skills: ['Search', 'Knowledge', 'Optimisation', 'Machine Learning', 'Neural Networks'],
-    courseUrl: 'https://cs50.harvard.edu/ai/',
+    verifyUrl: 'https://courses.edx.org/certificates/61583a65e7b44d45a23e65198a55896b',
     accent: 'hsl(300 80% 70%)',
     gradient: 'from-fuchsia-500/20 to-purple-500/10',
     featured: true,
@@ -239,10 +237,9 @@ export const CERTIFICATES: Certificate[] = [
     issuer: 'HarvardX',
     badge: 'Harvard',
     description:
-      "A HarvardX professional programme pairing CS50's foundations with applied artificial intelligence and Python engineering.",
+      "A HarvardX professional programme that pairs CS50's foundations with applied artificial intelligence and Python engineering.",
     skills: ['Computer Science', 'Artificial Intelligence', 'Python', 'Algorithms'],
-    courseUrl:
-      'https://www.edx.org/certificates/professional-certificate/harvardx-computer-science-for-artifical-intelligence',
+    verifyUrl: 'https://credentials.edx.org/credentials/6a00e753c1cc4e3cb469faaf0709a70f/',
     accent: 'hsl(265 89% 70%)',
     gradient: 'from-violet-500/20 to-purple-500/10',
     featured: true,
@@ -274,7 +271,7 @@ export const CERTIFICATES: Certificate[] = [
     issuer: 'HackerRank',
     badge: 'HackerRank',
     description:
-      'Intermediate algorithmic problem solving — dynamic programming, graph traversal, and complex data structures.',
+      'Intermediate algorithmic problem solving: dynamic programming, graph traversal, and complex data structures.',
     skills: ['Dynamic Programming', 'Graphs', 'Algorithms'],
     verifyUrl: 'https://www.hackerrank.com/certificates/54bb17bea4dc',
     accent: 'hsl(35 95% 60%)',
@@ -285,7 +282,7 @@ export const CERTIFICATES: Certificate[] = [
     issuer: 'HackerRank',
     badge: 'HackerRank',
     description:
-      'Verified skill certificate in core algorithmic problem solving — data structures, sorting, and searching.',
+      'Verified skill certificate in core algorithmic problem solving: data structures, sorting, and searching.',
     skills: ['Data Structures', 'Sorting', 'Searching'],
     verifyUrl: 'https://www.hackerrank.com/certificates/39a68d5bf0ae',
     accent: 'hsl(340 80% 65%)',

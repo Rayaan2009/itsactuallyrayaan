@@ -72,7 +72,7 @@ export function AboutSection() {
                   <div>
                     <p className="text-sm">
                       <strong className="text-foreground">{h.title}</strong>
-                      <span className="text-foreground/60"> — {h.detail}</span>
+                      <span className="text-foreground/60">: {h.detail}</span>
                     </p>
                     <p className="text-xs text-primary/80 font-medium mt-0.5">{h.result}</p>
                   </div>
